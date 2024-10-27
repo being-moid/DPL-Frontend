@@ -1,0 +1,60 @@
+<div class="p-5">
+  <h1 class="text-6xl p-5 font-bold">Categories</h1>
+  <div class="grid grid-row">
+    <button class="w-15 btn btn-primary" (click)="openModal()">Add Category</button>
+  </div>
+
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+    <div *ngFor="let category of categories" class="card w-full bg-base-100 shadow-xl">
+      <figure>
+        <img
+          [src]="category.imageBinnary ? 'data:' + category.imageFormat + ';base64,' + category.imageBinnary : (category.imageURL || 'https://via.placeholder.com/150')"
+          alt="{{ category.categoryName }}"
+          class="object-cover h-48 w-full"
+        />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">{{ category.categoryName }}</h2>
+        <p>{{ category.description }}</p>
+        <div class="card-actions justify-end">
+          <button class="btn btn-secondary" (click)="openModal(category)">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<input type="checkbox" id="category-modal" class="modal-toggle" [checked]="showModal" />
+<div class="modal">
+  <div class="modal-box">
+    <h2 class="font-bold text-lg">{{ isEditMode ? 'Edit Category' : 'Create Category' }}</h2>
+
+    <form  [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">Category Name</span>
+        </label>
+        <input type="text" placeholder="Category Name" formControlName="categoryName"  name="categoryName" class="input input-bordered" required />
+      </div>
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">Description</span>
+        </label>
+        <textarea formControlName="description" placeholder="Description" [(ngModel)]="categoryForm.value.description" name="description" class="textarea textarea-bordered"></textarea>
+      </div>
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">Image</span>
+        </label>
+        <input type="file" formControlName="image" (change)="onFileChange($event)" class="file-input" />
+      </div>
+      <div class="form-control mt-6">
+        <button class="btn btn-primary" type="submit" >{{ isEditMode ? 'Update' : 'Create' }}</button>
+        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

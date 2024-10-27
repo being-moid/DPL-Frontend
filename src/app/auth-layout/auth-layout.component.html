@@ -1,0 +1,15 @@
+<!-- auth-layout.component.html -->
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+  <div class="flex w-full max-w-5xl bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+    <!-- Left Section (Image & Tagline) -->
+    <div class="hidden md:flex md:w-1/2 bg-purple-900 relative">
+      <img src="https://www.dplit.com/wp-content/themes/dpl/images/DPL_LOGO.svg"  class="h-80 w-90 opacity-100" style="margin-top: 9rem ;" />
+      <button class="absolute top-4 right-4 btn btn-sm btn-ghost w-full text-white">Back to website →</button>
+      <div class="absolute bottom-8 left-8 text-white text-xl font-semibold">
+        Capturing Moments,<br>Creating Memories
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

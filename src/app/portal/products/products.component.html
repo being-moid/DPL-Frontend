@@ -1,0 +1,73 @@
+<div class="flex justify-between items-center mb-4">
+  <h2 class="text-2xl font-bold">Product List</h2>
+  <button class="btn btn-primary" (click)="openModal()">Add Product</button>
+</div>
+
+<table class="table w-full">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.productName }}</td>
+      <td>{{ product.amount | currency }}</td>
+      <td>{{ product?.category?.categoryName || 'N/A' }}</td>
+      <td>
+        <button class="btn btn-secondary btn-sm" (click)="openModal(product)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal for adding/editing product -->
+<div
+  class="modal modal-open"
+  [ngClass]="{ 'hidden': !isModalOpen }">
+  {{this.productForm.value | json}}
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">{{ editingProduct ? 'Edit Product' : 'Add Product' }}</h3>
+    <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+      <div class="form-control">
+        <label class="label">Product Name</label>
+        <input formControlName="productName" class="input input-bordered" placeholder="Product Name" />
+      </div>
+      <div class="form-control">
+        <label class="label">Amount</label>
+        <input formControlName="amount" type="number" class="input input-bordered" placeholder="Amount" />
+      </div>
+      <div class="form-control">
+        <label class="label">Category</label>
+        <input
+          type="text"
+          formControlName="categoryName"
+          class="input input-bordered"
+          placeholder="Search for a category"
+          (focus)="setupCategoryAutocomplete()"
+
+
+        />
+        <ul [hidden]="isActive" *ngIf="categories$ | async as categories" class="dropdown-content mt-2 shadow bg-base-100 rounded-box w-full">
+          <li
+            *ngFor="let category of categories"
+            (click)="selectCategory(category)"
+            class="p-2 cursor-pointer hover:bg-base-200">
+            {{ category.categoryName }}
+          </li>
+        </ul>
+      </div>
+      <div class="form-control">
+        <label class="label">Image</label>
+        <input type="file" (change)="handleFileInput($event)" />
+      </div>
+      <div class="modal-action">
+        <button type="button" class="btn btn-ghost" (click)="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">{{ editingProduct ? 'Update' : 'Add' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+
+   <!-- Right Section (Form) -->
+   <div class="w-full p-8 md:p-16">
+    <h2 class="text-3xl font-semibold text-white">Create an account</h2>
+    <p class="mt-2 text-gray-400">Already have an account? <a href="/auth/sign-in" class="text-purple-400 hover:underline">Log in</a></p>
+
+    <!-- Form Fields -->
+    <form class="mt-6 space-y-4" [formGroup]="form">
+      <div class="flex space-x-4">
+        <input type="email" placeholder="Email" formControlName="email" value="user@dpl.com" class="input input-bordered w-full  bg-gray-700 text-white" />
+        <select formControlName="typeOfUser" class="select select-ghost w-full max-w-xs text-white focus:bg-gray-800 focus:outline-none focus:text-white">
+          <option disabled selected>Pick type of user</option>
+          <option value="guest"> 🤠 GUEST</option>
+          <option value="ddlAdmin" > 😎 DDL ADMIN</option>
+
+        </select>
+      </div>
+      <div class="relative">
+        <input formControlName="password" [type]="toggle?'password':'text'" value="DPL@2024" placeholder="Enter your password" class="input input-bordered w-full bg-gray-700 text-white" />
+        <button type="button" class="absolute inset-y-0 right-3 flex items-center text-gray-400" (click)="toggle=!toggle">
+          <!-- Replace with an eye icon here -->
+          👁️
+        </button>
+      </div>
+
+      <button class="w-full btn bg-purple-900 text-white border-transparent" (click)="login($event)">Login</button>
+    </form>
+
+    <!-- Divider and Social Buttons -->
+    <div class="mt-6 flex items-center justify-between space-xl-full">
+      <span class="w-full h-px bg-gray-600"></span>
+      <span class="text-gray-400">Or register with</span>
+      <span class="w-full h-px bg-gray-600"></span>
+    </div>
+    <div class="mt-6 flex space-x-4">
+      <button class="btn bg-white text-gray-800 flex-1">Google</button>
+      <button class="btn bg-white text-gray-800 flex-1">Apple</button>
+    </div>
+  </div>

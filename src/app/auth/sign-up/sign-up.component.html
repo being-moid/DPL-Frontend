@@ -1,0 +1,38 @@
+
+   <!-- Right Section (Form) -->
+   <div class="w-full p-8 md:p-16">
+    <h2 class="text-3xl font-semibold text-white">Create an account</h2>
+    <p class="mt-2 text-gray-400">Already have an account? <a href="/auth/login" class="text-purple-400 hover:underline">Log in</a></p>
+
+    <!-- Form Fields -->
+    <form class="mt-6 space-y-4">
+      <div class="flex space-x-4">
+        <input type="text" placeholder="First name" class="input input-bordered w-full bg-gray-700 text-white" />
+        <input type="text" placeholder="Last name" class="input input-bordered w-full bg-gray-700 text-white" />
+      </div>
+      <input type="email" placeholder="Email" class="input input-bordered w-full bg-gray-700 text-white" />
+      <div class="relative">
+        <input type="password" placeholder="Enter your password" class="input input-bordered w-full bg-gray-700 text-white" />
+        <button type="button" class="absolute inset-y-0 right-3 flex items-center text-gray-400">
+          <!-- Replace with an eye icon here -->
+          👁️
+        </button>
+      </div>
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" class="checkbox checkbox-primary" />
+        <label class="text-gray-400">I agree to the <a href="#" class="text-purple-400 hover:underline">Terms & Conditions</a></label>
+      </div>
+      <button class="w-full btn bg-purple-900 text-white border-transparent ">Create account</button>
+    </form>
+
+    <!-- Divider and Social Buttons -->
+    <div class="mt-6 flex items-center justify-between space-xl-full">
+      <span class="w-full h-px bg-gray-600"></span>
+      <span class="text-gray-400">Or register with</span>
+      <span class="w-full h-px bg-gray-600"></span>
+    </div>
+    <div class="mt-6 flex space-x-4">
+      <button class="btn bg-white text-gray-800 flex-1">Google</button>
+      <button class="btn bg-white text-gray-800 flex-1">Apple</button>
+    </div>
+  </div>
